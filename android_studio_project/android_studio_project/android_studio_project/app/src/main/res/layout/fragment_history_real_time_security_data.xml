@@ -1,0 +1,48 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- 折线图 + 时间范围切换
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="8dp">
+
+            <Button
+                android:id="@+id/btn_one_hour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="近1小时" />
+
+            <Button
+                android:id="@+id/btn_twenty_four_hours"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="近24小时"
+                android:layout_marginStart="8dp" />
+
+            <Button
+                android:id="@+id/btn_seven_days"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="近7天"
+                android:layout_marginStart="8dp" />
+        </LinearLayout>-->
+
+        <!-- 历史数据列表容器 -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/historyRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- 标题（与暴力行为页面字体大小、样式一致） -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="异常声音警告记录"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- 时间范围选择按钮（与暴力行为页面按钮样式一致） -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="start"
+            android:layout_marginBottom="16dp">
+
+            <Button
+                android:id="@+id/btn_last_1h_warning"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_selector"
+                android:text="最近 1 小时"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:padding="8dp"
+                android:layout_marginEnd="8dp"/>
+
+            <Button
+                android:id="@+id/btn_last_24h_warning"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_selector"
+                android:text="最近 24 小时"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:padding="8dp"
+                android:layout_marginEnd="8dp"/>
+
+            <Button
+                android:id="@+id/btn_last_7d_warning"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_selector"
+                android:text="最近 7 天"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:padding="8dp"/>
+        </LinearLayout>
+
+        <!-- 事件列表容器（保持原有ID和结构） -->
+        <LinearLayout
+            android:id="@+id/sound_warning_events_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="12dp"/>
+
+        <!-- 空状态提示（与暴力行为页面字体大小、颜色一致） -->
+        <TextView
+            android:id="@+id/tv_no_sound_warning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="暂无异常声音警告记录"
+            android:textSize="16sp"
+            android:textColor="#666666"
+            android:visibility="gone"
+            android:layout_marginTop="12dp"/>
+    </LinearLayout>
+</ScrollView>

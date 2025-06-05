@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- 实时视频标题 -->
+        <TextView
+            android:id="@+id/tv_live_video_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="实时监控"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:paddingVertical="8dp"/>
+
+        <!-- RTMP直播播放器 -->
+        <com.shuyu.gsyvideoplayer.video.NormalGSYVideoPlayer
+            android:id="@+id/video_player"
+            android:layout_width="0dp"
+            android:layout_height="300dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_live_video_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tv_history_video_title"/>
+
+        <!-- 历史视频标题 -->
+        <TextView
+            android:id="@+id/tv_history_video_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="历史记录"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/video_player"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:paddingVertical="8dp"/>
+
+        <!-- 历史视频选择按钮 -->
+        <Button
+            android:id="@+id/btn_show_history_dialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="选择日期"
+            app:layout_constraintTop_toBottomOf="@id/tv_history_video_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:padding="12dp"
+            android:backgroundTint="#6495ED"/>
+
+        <!-- FLV文件列表播放器 -->
+        <com.shuyu.gsyvideoplayer.video.ListGSYVideoPlayer
+            android:id="@+id/detail_player"
+            android:layout_width="0dp"
+            android:layout_height="300dp"
+            app:layout_constraintTop_toBottomOf="@id/btn_show_history_dialog"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

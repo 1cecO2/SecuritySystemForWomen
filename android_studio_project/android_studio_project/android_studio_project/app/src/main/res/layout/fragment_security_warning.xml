@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="12dp">
+
+    <!-- 提示信息 -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="提示：小于或者大于阈值会警报"
+        android:textSize="12sp"
+        android:paddingBottom="4dp" />
+
+    <!-- 第一组：温度 + 湿度 -->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        android:layout_marginBottom="2dp">
+
+        <TextView
+            android:id="@+id/tv_threshold_temp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="温度阈值：最小 10°C，最大 11°C"
+            android:textSize="14dp"
+            android:paddingEnd="4dp" />
+
+        <TextView
+            android:id="@+id/tv_threshold_humidity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="湿度阈值：最小 20%，最大 70%"
+            android:textSize="14dp" />
+    </LinearLayout>
+
+    <!-- 温度和湿度输入框 -->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="4"
+        android:layout_marginBottom="4dp">
+
+        <EditText
+            android:id="@+id/et_temp_min"
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:hint="最小温度"
+            android:inputType="numberDecimal"
+            android:textSize="12sp"
+            android:layout_marginEnd="4dp" />
+
+        <EditText
+            android:id="@+id/et_temp_max"
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:hint="最大温度"
+            android:inputType="numberDecimal"
+            android:textSize="12sp"
+            android:layout_marginEnd="4dp" />
+
+        <EditText
+            android:id="@+id/et_humidity_min"
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:hint="最小湿度"
+            android:inputType="numberDecimal"
+            android:textSize="12sp"
+            android:layout_marginEnd="4dp" />
+
+        <EditText
+            android:id="@+id/et_humidity_max"
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:hint="最大湿度"
+            android:inputType="numberDecimal"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <!-- 第二组：烟雾 + 火焰 -->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        android:layout_marginBottom="2dp">
+
+        <TextView
+            android:id="@+id/tv_threshold_smog"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="烟雾阈值：最小 20，最大 70"
+            android:textSize="14dp"
+            android:paddingEnd="4dp" />
+
+        <TextView
+            android:id="@+id/tv_threshold_flame"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="火焰阈值：最小 20，最大 70"
+            android:textSize="14dp" />
+    </LinearLayout>
+
+    <!-- 烟雾和火焰输入框 -->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="4"
+        android:layout_marginBottom="4dp">
+
+        <EditText
+            android:id="@+id/et_smog_min"
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:hint="最小烟雾"
+            android:inputType="numberDecimal"
+            android:textSize="12sp"
+            android:layout_marginEnd="4dp" />
+
+        <EditText
+            android:id="@+id/et_smog_max"
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:hint="最大烟雾"
+            android:inputType="numberDecimal"
+            android:textSize="12sp"
+            android:layout_marginEnd="4dp" />
+
+        <EditText
+            android:id="@+id/et_flame_min"
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:hint="最小火焰"
+            android:inputType="numberDecimal"
+            android:textSize="12sp"
+            android:layout_marginEnd="4dp" />
+
+        <EditText
+            android:id="@+id/et_flame_max"
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:hint="最大火焰"
+            android:inputType="numberDecimal"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <!-- 第三组：甲烷 + 按钮 -->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        android:layout_marginBottom="2dp">
+
+        <TextView
+            android:id="@+id/tv_threshold_ch4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="甲烷阈值：最小 20，最大 70"
+            android:textSize="14dp"
+            android:paddingEnd="4dp" />
+
+    </LinearLayout>
+
+    <!-- 甲烷输入框 -->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="4"
+        android:layout_marginBottom="8dp">
+
+        <EditText
+            android:id="@+id/et_ch4_min"
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:hint="最小甲烷"
+            android:inputType="numberDecimal"
+            android:textSize="12sp"
+            android:layout_marginEnd="4dp" />
+
+        <EditText
+            android:id="@+id/et_ch4_max"
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:hint="最大甲烷"
+            android:inputType="numberDecimal"
+            android:textSize="12sp" />
+
+
+        <Button
+            android:id="@+id/button_confirm"
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:layout_weight="2"
+            android:text="确认设定"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <!-- 刷新按钮 -->
+    <Button
+        android:id="@+id/button_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="刷新警报数据"
+        android:textSize="12sp" />
+
+    <!-- 数据列表 -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:background="#FFFFFF"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="4dp" />
+</LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

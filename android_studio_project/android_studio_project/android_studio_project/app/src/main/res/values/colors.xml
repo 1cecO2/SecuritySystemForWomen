@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="primary_blue">#2196F3</color>
+    <color name="white">#FFFFFF</color>
+
+    <!-- 睡眠模块 -->
+    <!-- 标题文字颜色 -->
+    <color name="title_text_color">#1E88E5</color>
+    <!-- 标签文字颜色 -->
+    <color name="label_text_color">#333333</color>
+    <!-- 数据文字颜色 -->
+    <color name="data_text_color">#666666</color>
+
+
+    <color name="primary_color">#007BFF</color>
+
+
+</resources>

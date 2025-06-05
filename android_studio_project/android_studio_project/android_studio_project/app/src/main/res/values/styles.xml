@@ -1,0 +1,14 @@
+<resources>
+    <!-- 其他样式 -->
+    <style name="TabTextStyle" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="MyTabLayoutStyle" parent="Widget.MaterialComponents.TabLayout">
+        <item name="tabTextColor">@color/tab_text_color</item>
+        <item name="tabSelectedTextColor">@color/primary_color</item>
+        <item name="tabIndicatorColor">@color/primary_color</item>
+    </style>
+
+</resources>

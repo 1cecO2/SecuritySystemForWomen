@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="16dp"
+    android:background="@drawable/bg_gradient"
+    android:layout_marginBottom="8dp"
+    android:gravity="center_vertical">
+
+    <!-- 左边部分：暴力行为检测警告 -->
+    <TextView
+        android:id="@+id/tv_event_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="暴力行为检测警告"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="#666666"
+        android:gravity="center" />
+
+    <!-- 右边部分：检测时间和置信度 -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tv_event_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="检测时间：2024-10-01 15:30:00"
+            android:textSize="17sp"
+            android:textColor="#000000" />
+
+        <TextView
+            android:id="@+id/tv_confidence"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="置信度：0.90"
+            android:textSize="17sp"
+            android:textColor="#000000"
+            android:layout_marginTop="4dp" />
+    </LinearLayout>
+</LinearLayout>

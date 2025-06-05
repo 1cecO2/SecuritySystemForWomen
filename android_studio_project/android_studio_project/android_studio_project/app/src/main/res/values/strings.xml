@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">onenet_dateshow</string>
+    <string-array name="realtime_tabs">
+        <item>生命体征</item>
+        <item>声音</item>
+        <item>动作</item>
+        <item>面色</item>
+        <item>皮肤</item>
+        <item>睡眠</item>
+    </string-array>
+</resources>
