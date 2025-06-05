@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>实时音频监控系统</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+        }
+
+        .header {
+            text-align: center;
+            padding: 20px;
+            border-bottom: 2px solid #8bb8e8;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header h1 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .header h1::before {
+            content: "🎙️";
+            font-size: 24px;
+        }
+
+        .last-updated {
+            color: #666;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .refresh-btn {
+            padding: 8px 15px;
+            background: #50a0f5;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+            margin: 10px 0;
+            transition: background 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            background: #6a9bc7;
+        }
+
+        .audio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .audio-card {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .audio-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .audio-timestamp {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .audio-timestamp::before {
+            content: "📅";
+            color: #666;
+        }
+
+        .audio-filename {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 15px;
+            color: #666;
+            font-size: 14px;
+            word-break: break-all;
+        }
+
+        .audio-filename::before {
+            content: "📁";
+            color: #f1c40f;
+        }
+
+        .audio-player {
+            width: 100%;
+            margin-bottom: 15px;
+            height: 40px;
+        }
+
+        .status-info {
+            border-left: 3px solid #5cb85c;  /* 正常状态绿色边框 */
+            padding-left: 10px;
+            background-color: #f5fcf5;
+            margin-top: 10px;
+        }
+
+        .status-info.abnormal {
+            border-color: #d9534f;  /* 异常状态红色边框 */
+            background-color: #fdf5f5;
+        }
+
+        .status-info p {
+            margin: 0;  /* 清除默认margin */
+            padding: 10px;  /* 增加上下左右边距 */
+            font-weight: bold;  /* 字体加粗 */
+        }
+
+        .status-info:not(.abnormal) p {
+            color: #008000;  /* 正常状态深绿色 */
+        }
+
+        .status-info.abnormal p {
+            color: #ff0000;  /* 异常状态红色 */
+        }
+
+        .status-info p:first-child::before {
+            content: "🎵";
+            font-size: 16px;
+        }
+
+        .status-info p:last-child::before {
+            content: "⚠️";
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>实时音频监控系统</h1>
+        <button class="refresh-btn" onclick="loadData()">手动刷新</button>
+        <div class="last-updated">最后更新：<span id="updateTime">-</span></div>
+    </div>
+
+    <div class="audio-grid" id="audioContainer"></div>
+
+    <script>
+        async function fetchData() {
+            try {
+                const [audioRes, resultsRes] = await Promise.all([
+                    fetch('/api/audio-list'),
+                    fetch('/api/results')
+                ]);
+                
+                return {
+                    audioList: await audioRes.json(),
+                    results: await resultsRes.json()
+                };
+            } catch (error) {
+                console.error('数据获取失败:', error);
+                return { audioList: [], results: {} };
+            }
+        }
+
+        function updateUI(data) {
+            const container = document.getElementById('audioContainer');
+            container.innerHTML = '';
+            
+            data.audioList.forEach(audio => {
+                const result = data.results[audio.filename] || {};
+                const card = document.createElement('div');
+                card.className = 'audio-card';
+                
+                const statusClass = result.status === "异常" ? 'abnormal' : '';
+
+                card.innerHTML = `
+                    <div class="audio-timestamp">${audio.timestamp}</div>
+                    <div class="audio-filename">${audio.filename}</div>
+                    <audio class="audio-player" controls>
+                        <source src="${audio.url}" type="audio/wav">
+                        您的浏览器不支持音频播放。
+                    </audio>
+                    <div class="status-info ${statusClass}">
+                        <p>类别：${result.main_class || "未知类别"}</p>
+                        <p> 状态：${result.status || "正常"}</p>
+                    </div>
+                `;
+                
+                container.appendChild(card);
+            });
+
+            // 手动拼接时间，兼容所有浏览器
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');   
+            const minutes = String(now.getMinutes()).padStart(2, '0'); 
+            const seconds = String(now.getSeconds()).padStart(2, '0'); 
+            document.getElementById('updateTime').textContent = `${hours}:${minutes}:${seconds}`;
+        }
+
+        async function loadData() {
+            const data = await fetchData();
+            console.log("获取到的数据：", data);
+            updateUI(data);
+        }
+
+        // 初始加载
+        loadData();
+    </script>
+</body>
+</html>
