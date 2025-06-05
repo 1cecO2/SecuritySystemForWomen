@@ -1,0 +1,13 @@
+将本地视频转为rtsp视频流
+ffmpeg -re -stream_loop -1 -i 汇总.mp4 -c copy -f rtsp rtsp://127.0.0.1:8554/stream
+
+将本地视频流转公网并自动连接
+ffmpeg -reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5 -i http://192.168.137.165/mjpeg/1 -c:v libx264 -preset veryfast -tune zerolatency -b:v 2000k -maxrate 2000k -bufsize 4000k -vf "format=yuv420p" -an -flvflags no_duration_filesize -f flv rtmp://47.94.236.247/live/stream
+
+云服务中：
+检查服务器配置
+nginx.exe -t
+开启服务器：
+start nginx
+停止nginx：
+nginx.exe -s stop或者nginx.exe -s quit
